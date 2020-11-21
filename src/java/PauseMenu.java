@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class PauseMenu extends Screen{
+public class PauseMenu extends Screen {
     public static PauseMenu instance = new PauseMenu();
 
     @Override
