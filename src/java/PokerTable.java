@@ -1,8 +1,6 @@
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -22,7 +20,7 @@ public class PokerTable extends Screen {
 
 	static {
 		try {
-			URL imageFile = PokerTable.class.getClassLoader().getResource("table.jpg");
+			URL imageFile = PokerTable.class.getClassLoader().getResource("table.png");
 			if (imageFile != null)
 				image = ImageIO.read(imageFile);
 		} catch (Exception ignored) {
@@ -38,13 +36,17 @@ public class PokerTable extends Screen {
 		double cardWidth = getWidth() / 15d;
 		double cardHeight = cardWidth * 1.5d;
 
-		int i = 0;
+		int i = 5;
+		int j = 2;
 
-		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, 100, cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, 100, cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, 100, cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, 100, cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, 100, cardWidth, cardHeight, 0));
+		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
+		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
+		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
+		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
+		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
+
+		cards.add(new PokerCard(getRandomCard(), cardWidth * (i-3.5) , cardHeight * (j+1.5), cardWidth, cardHeight, 0));
+		cards.add(new PokerCard(getRandomCard(), cardWidth * (i-2.5), cardHeight * (j+1.5), cardWidth, cardHeight, 0));
 	}
 
 	public void update() {

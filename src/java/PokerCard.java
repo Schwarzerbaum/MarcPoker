@@ -10,6 +10,7 @@ public class PokerCard {
 
 	public Card card;
 
+
 	public PokerCard(Card card, double x, double y, double width, double height, double angle) {
 		this.card = card;
 		this.x = x;
@@ -18,6 +19,8 @@ public class PokerCard {
 		this.height = height;
 		this.angle = angle;
 	}
+
+
 
 	public void turn() {
 		visible = !visible;
@@ -28,7 +31,7 @@ public class PokerCard {
 	}
 
 	public void draw(Graphics2D g2d) {
-		g2d.setColor(Color.GREEN);
+
 		BufferedImage image;
 		if (visible)
 			image = card.image;
