@@ -37,7 +37,7 @@ public enum Chips {
 				}
 			};*/
 			ActionListener listener = e -> {
-
+				System.out.println(value);
 			};
 			button.addActionListener(listener);
 			button.setOpaque(false);

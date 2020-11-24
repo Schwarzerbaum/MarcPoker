@@ -10,6 +10,7 @@ public class PokerTable extends Screen {
 
 	public static ArrayList<Card> deckOfCards = new ArrayList<>();
 	public static Player player = new Player();
+	public static Bot bot = new Bot();
 
 	static {
 		for (int i = 0; i < Card.CARD_COLORS.values().length; i++) {
@@ -43,11 +44,17 @@ public class PokerTable extends Screen {
 		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
 		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
 		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
+		/*cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));*/
+		/*cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));*/
+
+		i = 10;
 
 		player.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j + 1.5), cardWidth, cardHeight, 0).turn());
 		player.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j + 1.5), cardWidth, cardHeight, 0).turn());
+
+		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j - 1.5), cardWidth, cardHeight, 0));
+		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j - 1.5), cardWidth, cardHeight, 0));
+
 	}
 
 	public void update() {
@@ -73,13 +80,14 @@ public class PokerTable extends Screen {
 		}
 
 		player.draw(g2d);
+		bot.draw(g2d);
 
 		int w = 64 * 2;
 		int h = 47 * 2;
-		int xOff = 10;
+		int xOff = 425;
 		int yOff = getHeight() - h * 2;
 		for (int i = 0; i < Chips.values().length; i++) {
-			Chips.values()[i].draw(g2d, xOff + i * (w + 5), yOff, w, h);
+			Chips.values()[i].draw(g2d, xOff + i * (w - 5), yOff, w, h);
 		}
 	}
 
