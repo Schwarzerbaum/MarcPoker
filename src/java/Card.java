@@ -52,7 +52,6 @@ public class Card implements Comparable<Card> {
 	}
 
 	public static HandRank determineHandRank(Card[] cardsArg) {
-
 		if (royalFlush(cardsArg)) {
 			return HandRank.ROYAL_FLUSH;
 		} else if (straightFlush(cardsArg)) {
@@ -63,18 +62,17 @@ public class Card implements Comparable<Card> {
 			return HandRank.FULL_HOUSE;
 		} else if (flush(cardsArg)) {
 			return HandRank.FLUSH;
-		/*} else if (straight(flop)) {
-			return HandRank.STRAIGHT;*/
+		} else if (straight(cardsArg)) {
+			return HandRank.STRAIGHT;
 		} else if (threeOfAKind(cardsArg)) {
 			return HandRank.THREE_OF_A_KIND;
-		/*} else if (twoPair(flop)) {
-			return HandRank.TWO_PAIR;*/
+		} else if (twoPair(cardsArg)) {
+			return HandRank.TWO_PAIR;
 		} else if (pair(cardsArg)) {
 			return HandRank.PAIR;
 		} else {
 			return HandRank.HIGH_CARD;
 		}
-
 	}
 
 
@@ -85,9 +83,9 @@ public class Card implements Comparable<Card> {
 
 		for (CARD_COLORS color : CARD_COLORS.values()) {
 			Card[] coloredCards = Arrays.stream(cards.clone())
-					.filter(card -> card.color == color)
-					.filter(card -> Arrays.asList(CARD_NUMBERS.TEN, CARD_NUMBERS.JACK, CARD_NUMBERS.QUEEN, CARD_NUMBERS.KING, CARD_NUMBERS.ACE).contains(card.number))
-					.toArray(Card[]::new);
+					                      .filter(card -> card.color == color)
+					                      .filter(card -> Arrays.asList(CARD_NUMBERS.TEN, CARD_NUMBERS.JACK, CARD_NUMBERS.QUEEN, CARD_NUMBERS.KING, CARD_NUMBERS.ACE).contains(card.number))
+					                      .toArray(Card[]::new);
 			if (coloredCards.length == 5) return true;
 		}
 		return false;
@@ -105,7 +103,7 @@ public class Card implements Comparable<Card> {
 			subarray:
 			for (int i = 0; i < (coloredCards.length - 4); i++) {
 				int current = coloredCards[i].number.index;
-				for (int j = i + 1; j <= 5; j++) {
+				for (int j = i + 1; j <= i + 5; j++) {
 					Card c = coloredCards[j];
 
 					if (c.number.index != current + 1) {
@@ -159,9 +157,27 @@ public class Card implements Comparable<Card> {
 		return false;
 	}
 
-	/*public static boolean straight(Card[] cardsArg) {
-		
-	}*/
+	public static boolean straight(Card[] cardsArg) {
+		Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
+
+		Arrays.sort(cards);
+
+		subarray:
+		for (int i = 0; i < (cards.length - 4); i++) {
+			int current = cards[i].number.index;
+			for (int j = i + 1; j <= i + 5; j++) {
+				Card c = cards[j];
+
+				if (c.number.index != current + 1) {
+					continue subarray;
+				}
+				current++;
+			}
+			return true;
+		}
+
+		return false;
+	}
 
 	public static boolean threeOfAKind(Card[] cardsArg) {
 		Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
@@ -183,15 +199,13 @@ public class Card implements Comparable<Card> {
 
 		Arrays.sort(cards);
 
-		boolean firstPair = false;
-		boolean secondPair = false;
+		int pairs = 0;
 
 		for (CARD_NUMBERS number : CARD_NUMBERS.values()) {
-			Card[] coloredCards = Arrays.stream(Arrays.copyOf(cards, cards.length)).filter(card -> card.number == number).toArray(Card[]::new);
-			if (coloredCards.length == 2) firstPair = true;
-
+			Card[] numberedCards = Arrays.stream(Arrays.copyOf(cards, cards.length)).filter(card -> card.number == number).toArray(Card[]::new);
+			if (numberedCards.length == 2) pairs++;
 		}
-		return firstPair && secondPair;
+		return pairs == 2;
 	}
 
 	public static boolean pair(Card[] cardsArg) {

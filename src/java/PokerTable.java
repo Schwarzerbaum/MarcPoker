@@ -44,17 +44,20 @@ public class PokerTable extends Screen {
 		int i = 5;
 		int j = 2;
 
+		cards.clear();
 		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0).turn());
 		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0).turn());
 		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0).turn());
 
 		i = 10;
 
+		player.cards.clear();
 		player.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j + 1.5), cardWidth, cardHeight, 0).turn());
 		player.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j + 1.5), cardWidth, cardHeight, 0).turn());
 
-		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j - 1.5), cardWidth, cardHeight, 0));
-		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j - 1.5), cardWidth, cardHeight, 0));
+		bot.cards.clear();
+		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j - 1.5), cardWidth, cardHeight, 0).turn());
+		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j - 1.5), cardWidth, cardHeight, 0).turn());
 	}
 
 	public void update() {
@@ -92,6 +95,9 @@ public class PokerTable extends Screen {
 		}
 		g2d.setColor(Color.red);
 		g2d.drawString(player.getHandRank().toString(), 100, 100);
+
+		g2d.setColor(Color.red);
+		g2d.drawString(bot.getHandRank().toString(), getWidth() - 200, 100);
 	}
 
 	public void resetDeckOfCards() {
@@ -101,6 +107,11 @@ public class PokerTable extends Screen {
 				deckOfCards.add(new Card(Card.CARD_COLORS.values()[i], Card.CARD_NUMBERS.values()[j]));
 			}
 		}
+	}
+
+	public void resetPokerTable() {
+		resetDeckOfCards();
+		init();
 	}
 
 	public Card getRandomCard() {
