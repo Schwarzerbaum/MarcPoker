@@ -6,13 +6,6 @@ public class Main {
 	public static JFrame frame;
 	public static Screen currentScreen;
 
-	public static ImageIcon image1;
-	public static ImageIcon image2;
-	public static JButton button;
-	public static JLabel label;
-	public static ImageIcon image = new ImageIcon("resources//chips//chip1.png");
-	/*URL imageFile = PokerTable.class.getClassLoader().getResource("table.png");*/
-
 	public static void main(String[] args) {
 		Card.loadImages();
 
@@ -64,8 +57,6 @@ public class Main {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		frame.add(button);
-		frame.add(PokerChip.instance);
 		frame.add(PokerTable.instance);
 		frame.add(PauseMenu.instance);
 

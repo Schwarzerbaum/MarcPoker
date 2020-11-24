@@ -9,6 +9,7 @@ public class PokerTable extends Screen {
 	public static BufferedImage image;
 
 	public static ArrayList<Card> deckOfCards = new ArrayList<>();
+	public static Player player = new Player();
 
 	static {
 		for (int i = 0; i < Card.CARD_COLORS.values().length; i++) {
@@ -45,8 +46,8 @@ public class PokerTable extends Screen {
 		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
 		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
 
-		cards.add(new PokerCard(getRandomCard(), cardWidth * (i-3.5) , cardHeight * (j+1.5), cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), cardWidth * (i-2.5), cardHeight * (j+1.5), cardWidth, cardHeight, 0));
+		player.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j + 1.5), cardWidth, cardHeight, 0).turn());
+		player.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j + 1.5), cardWidth, cardHeight, 0).turn());
 	}
 
 	public void update() {
@@ -69,6 +70,16 @@ public class PokerTable extends Screen {
 
 		for (int i = 0; i < cards.size(); i++) {
 			cards.get(i).draw(g2d);
+		}
+
+		player.draw(g2d);
+
+		int w = 64 * 2;
+		int h = 47 * 2;
+		int xOff = 10;
+		int yOff = getHeight() - h * 2;
+		for (int i = 0; i < Chips.values().length; i++) {
+			Chips.values()[i].draw(g2d, xOff + i * (w + 5), yOff, w, h);
 		}
 	}
 

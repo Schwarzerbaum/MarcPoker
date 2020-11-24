@@ -21,9 +21,9 @@ public class PokerCard {
 	}
 
 
-
-	public void turn() {
+	public PokerCard turn() {
 		visible = !visible;
+		return this;
 	}
 
 	public void update() {
