@@ -10,7 +10,6 @@ public class PokerCard {
 
 	public Card card;
 
-
 	public PokerCard(Card card, double x, double y, double width, double height, double angle) {
 		this.card = card;
 		this.x = x;

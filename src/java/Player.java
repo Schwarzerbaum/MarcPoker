@@ -24,7 +24,6 @@ public class Player {
 			cards.add(PokerTable.instance.cards.get(i).card);
 		}
 		Card[] cardsArray = cards.toArray(new Card[0]);
-		System.out.println("___");
 		return Card.determineHandRank(cardsArray);
 	}
 }

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public class PokerTable extends Screen {
 	public static PokerTable instance = new PokerTable();
 	public static BufferedImage image;
+	public static BufferedImage winImage;
+	public static BufferedImage loseImage;
 
 	public static ArrayList<Card> deckOfCards = new ArrayList<>();
 	public static Player player = new Player();
@@ -28,6 +30,12 @@ public class PokerTable extends Screen {
 			URL imageFile = PokerTable.class.getClassLoader().getResource("table.png");
 			if (imageFile != null)
 				image = ImageIO.read(imageFile);
+			URL winImageFile = PokerTable.class.getClassLoader().getResource("win.png");
+			if (winImageFile != null)
+				winImage = ImageIO.read(winImageFile);
+			URL loseImageFile = PokerTable.class.getClassLoader().getResource("lose.jpg");
+			if (loseImageFile != null)
+				loseImage = ImageIO.read(loseImageFile);
 		} catch (Exception ignored) {
 		}
 	}
@@ -37,6 +45,8 @@ public class PokerTable extends Screen {
 	@Override
 	public void init() {
 		super.init();
+		System.out.println("lol");
+
 
 		cardWidth = getWidth() / 15d;
 		cardHeight = cardWidth * 1.5d;
@@ -52,12 +62,17 @@ public class PokerTable extends Screen {
 		i = 10;
 
 		player.cards.clear();
-		player.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j + 1.5), cardWidth, cardHeight, 0).turn());
-		player.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j + 1.5), cardWidth, cardHeight, 0).turn());
+		player.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j + 1.4), cardWidth, cardHeight, 0).turn());
+		player.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j + 1.4), cardWidth, cardHeight, 0).turn());
 
 		bot.cards.clear();
-		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j - 1.5), cardWidth, cardHeight, 0).turn());
-		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j - 1.5), cardWidth, cardHeight, 0).turn());
+		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j - 1.4), cardWidth, cardHeight, 0));
+		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j - 1.4), cardWidth, cardHeight, 0));
+
+		BetButton bet = new BetButton();
+		CheckButton check = new CheckButton();
+		FoldButton fold = new FoldButton();
+
 	}
 
 	public void update() {
@@ -93,11 +108,13 @@ public class PokerTable extends Screen {
 		for (int i = 0; i < Chips.values().length; i++) {
 			Chips.values()[i].draw(g2d, xOff + i * (w - 5), yOff, w, h);
 		}
-		g2d.setColor(Color.red);
-		g2d.drawString(player.getHandRank().toString(), 100, 100);
+
 
 		g2d.setColor(Color.red);
-		g2d.drawString(bot.getHandRank().toString(), getWidth() - 200, 100);
+		g2d.setFont(new Font("Comic Sans", Font.PLAIN, 25));
+		g2d.drawString(player.getHandRank().toString(), 500, 700);
+
+
 	}
 
 	public void resetDeckOfCards() {

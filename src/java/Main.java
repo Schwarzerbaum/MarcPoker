@@ -9,32 +9,9 @@ public class Main {
 
     public static void main(String[] args) {
         Card.loadImages();
-
         createJFrame();
 
-        Card[] bla = new Card[]{
-                new Card(Card.CARD_COLORS.DIAMONDS, Card.CARD_NUMBERS.ACE),
-                new Card(Card.CARD_COLORS.CLUBS, Card.CARD_NUMBERS.ACE),
-                new Card(Card.CARD_COLORS.DIAMONDS, Card.CARD_NUMBERS.QUEEN),
-                new Card(Card.CARD_COLORS.DIAMONDS, Card.CARD_NUMBERS.TWO),
-                new Card(Card.CARD_COLORS.DIAMONDS, Card.CARD_NUMBERS.NINE),
-                new Card(Card.CARD_COLORS.DIAMONDS, Card.CARD_NUMBERS.JACK),
-                new Card(Card.CARD_COLORS.SPADES, Card.CARD_NUMBERS.JACK)
-        };
 
-
-        System.out.println(Card.determineHandRank(bla));
-
-        /*PokerChip test = new PokerChip();*/
-
-		/*System.out.println(Card.royalFlush(bla));
-		System.out.println(Card.straightFlush(bla));
-		System.out.println(Card.fourOfAKind(bla));
-		System.out.println(Card.fullHouse(bla));
-		System.out.println(Card.flush(bla));
-		System.out.println(Card.threeOfAKind(bla));
-		*//*System.out.println(Card.twoPair(bla));*//*
-		System.out.println(Card.pair(bla));*/
 
         PokerTable.instance.init();
         PauseMenu.instance.init();
@@ -48,7 +25,6 @@ public class Main {
 
 
     public static void createJFrame() {
-
         frame = new JFrame();
         frame.setVisible(true);
         frame.setSize(600, 400);
