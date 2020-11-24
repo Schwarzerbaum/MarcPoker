@@ -9,7 +9,8 @@ public class PokerTableMouseHandler implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-
+		if (e.getButton() == MouseEvent.BUTTON1 && PokerTable.instance.cards.size() < 5)
+			PokerTable.instance.cards.add(new PokerCard(PokerTable.instance.getRandomCard(), 0, 0, PokerTable.cardWidth, PokerTable.cardHeight, 0));
 	}
 
 	@Override

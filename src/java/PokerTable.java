@@ -12,6 +12,9 @@ public class PokerTable extends Screen {
 	public static Player player = new Player();
 	public static Bot bot = new Bot();
 
+	public static double cardWidth;
+	public static double cardHeight;
+
 	static {
 		for (int i = 0; i < Card.CARD_COLORS.values().length; i++) {
 			for (int j = 0; j < Card.CARD_NUMBERS.values().length; j++) {
@@ -35,17 +38,17 @@ public class PokerTable extends Screen {
 	public void init() {
 		super.init();
 
-		double cardWidth = getWidth() / 15d;
-		double cardHeight = cardWidth * 1.5d;
+		cardWidth = getWidth() / 15d;
+		cardHeight = cardWidth * 1.5d;
 
 		int i = 5;
 		int j = 2;
 
-		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));
-		/*cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));*/
-		/*cards.add(new PokerCard(getRandomCard(), cardWidth * i++, cardHeight * j, cardWidth, cardHeight, 0));*/
+		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0));
+		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0));
+		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0));
+		/*cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0));*/
+		/*cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0));*/
 
 		i = 10;
 
@@ -54,7 +57,6 @@ public class PokerTable extends Screen {
 
 		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 3.5), cardHeight * (j - 1.5), cardWidth, cardHeight, 0));
 		bot.cards.add(new PokerCard(getRandomCard(), cardWidth * (i - 2.5), cardHeight * (j - 1.5), cardWidth, cardHeight, 0));
-
 	}
 
 	public void update() {
@@ -75,8 +77,9 @@ public class PokerTable extends Screen {
 		g2d.fillRect(0, 0, getWidth(), getHeight());
 		g2d.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 
+		int offX = 5;
 		for (int i = 0; i < cards.size(); i++) {
-			cards.get(i).draw(g2d);
+			cards.get(i).setX(cardWidth * offX++).setY(cardHeight * 2).draw(g2d);
 		}
 
 		player.draw(g2d);
@@ -84,7 +87,7 @@ public class PokerTable extends Screen {
 
 		int w = 64 * 2;
 		int h = 47 * 2;
-		int xOff = 425;
+		int xOff = 412;
 		int yOff = getHeight() - h * 2;
 		for (int i = 0; i < Chips.values().length; i++) {
 			Chips.values()[i].draw(g2d, xOff + i * (w - 5), yOff, w, h);

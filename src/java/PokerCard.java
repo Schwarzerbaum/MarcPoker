@@ -38,4 +38,14 @@ public class PokerCard {
 		else image = Card.cardImages.get(Card.back);
 		g2d.drawImage(image, (int) x, (int) y, (int) width, (int) height, null);
 	}
+
+	public PokerCard setX(double x) {
+		this.x = x;
+		return this;
+	}
+
+	public PokerCard setY(double y) {
+		this.y = y;
+		return this;
+	}
 }
