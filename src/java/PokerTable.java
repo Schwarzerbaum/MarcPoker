@@ -44,11 +44,9 @@ public class PokerTable extends Screen {
 		int i = 5;
 		int j = 2;
 
-		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0));
-		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0));
-		/*cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0));*/
-		/*cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0));*/
+		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0).turn());
+		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0).turn());
+		cards.add(new PokerCard(getRandomCard(), 0, 0, cardWidth, cardHeight, 0).turn());
 
 		i = 10;
 
@@ -92,6 +90,8 @@ public class PokerTable extends Screen {
 		for (int i = 0; i < Chips.values().length; i++) {
 			Chips.values()[i].draw(g2d, xOff + i * (w - 5), yOff, w, h);
 		}
+		g2d.setColor(Color.red);
+		g2d.drawString(player.getHandRank().toString(), 100, 100);
 	}
 
 	public void resetDeckOfCards() {

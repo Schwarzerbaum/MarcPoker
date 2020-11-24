@@ -13,4 +13,15 @@ public class Player {
 			cards.get(i).draw(g2d);
 		}
 	}
+
+	public Card.HandRank getHandRank() {
+		ArrayList <Card> cards = new ArrayList<>();
+		for(int i = 0; i < this.cards.size(); i++) {
+			cards.add(this.cards.get(i).card);
+		}
+		for(int i = 0; i < PokerTable.instance.cards.size(); i++) {
+			cards.add(PokerTable.instance.cards.get(i).card);
+		}
+		return Card.determineHandRank(cards.toArray(new Card[0]));
+	}
 }
