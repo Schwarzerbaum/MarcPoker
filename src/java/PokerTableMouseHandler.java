@@ -9,8 +9,7 @@ public class PokerTableMouseHandler implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		int r = (int) (Math.random() * PokerTable.instance.cards.size());
-		PokerTable.instance.cards.get(r).turn();
+
 	}
 
 	@Override

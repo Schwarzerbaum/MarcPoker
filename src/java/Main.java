@@ -58,12 +58,6 @@ public class Main {
 
 	public static void createJFrame() {
 
-		button = new JButton(image);
-		button.setBounds(150, 50, 100,60);
-		/*button.addActionListener(this);*/
-
-
-
 		frame = new JFrame();
 		frame.setVisible(true);
 		frame.setSize(600, 400);

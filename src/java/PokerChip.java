@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
-public class PokerChip implements ActionListener {
+public class PokerChip {
     public static PokerTable instance = new PokerTable();
 
     public static ImageIcon image1;
@@ -20,36 +20,48 @@ public class PokerChip implements ActionListener {
 
     public PokerChip() {
 
-        ImageIcon chip1 = new ImageIcon(getClass().getResource("resources//chips//chip1.png"));
-        ImageIcon chip5 = new ImageIcon(getClass().getResource("resources//chips//chip5.png"));
-        ImageIcon chip10 = new ImageIcon(getClass().getResource("resources//chips//chip10.png"));
-        ImageIcon chip20 = new ImageIcon(getClass().getResource("resources//chips//chip20.png"));
-        ImageIcon chip50 = new ImageIcon(getClass().getResource("resources//chips//chip50.png"));
-        ImageIcon chip100 = new ImageIcon(getClass().getResource("resources//chips//chip100.png"));
-        ImageIcon chip200 = new ImageIcon(getClass().getResource("resources//chips//chip200.png"));
-        ImageIcon chip500 = new ImageIcon(getClass().getResource("resources//chips//chip500.png"));
-        ImageIcon chip1000 = new ImageIcon(getClass().getResource("resources//chips//chip1000.png"));
-
-        button = new JButton(chip1);
-        button.setBounds(150, 50, 100,60);
-        button.addActionListener(this);
 
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == button) {
-            System.out.println("IT FUCKING WORKS YESSSSS!!!!!");
+
+    public void update() {
+
+    }
+
+    public void draw(Graphics2D g2d) {
+        Chips.ONE.draw(g2d, 100, 100, 50, 50);
+    }
+
+    public enum Chips {
+        ONE(1),
+        FIVE(5),
+        TEN(10),
+        TWENTY(20),
+        FIFTY(50),
+        HUNDRED(100),
+        TWO_HUNDRED(200),
+        FIVE_HUNDRED(500),
+        THOUSAND(1000);
+
+        public int value;
+        public BufferedImage image;
+        public JButton button;
+
+        Chips(int value) {
+            this.value = value;
+            try {
+                image = ImageIO.read(PokerChip.class.getResource("/chips/chip" + this.value + ".png"));
+                button = new JButton(new ImageIcon(image));
+                ActionListener listener = e -> System.out.println("IT FUCKING WORKS YESSSSS!!!!!");
+                button.addActionListener(listener);
+            } catch (IOException ignored) {
+
+            }
         }
 
+        public void draw(Graphics2D g2d, int x, int y, int w, int h) {
+            g2d.drawImage(this.image, x, y, w, h, null);
+            button.setBounds(x, y, w, h);
+        }
     }
-
-
-    public void update(){
-
-    }
-    public void draw(Graphics2D g2d) {
-        g2d.drawImage(chip1, 0, 0, 0, 0, null);
-
-    }
-
 }
