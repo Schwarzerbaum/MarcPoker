@@ -3,15 +3,28 @@ import javax.swing.*;
 import java.net.URL;
 import java.util.ArrayList;
 
+
+/**
+ * The type Main.
+ */
 public class Main {
+    /**
+     * The constant frame.
+     */
     public static JFrame frame;
+    /**
+     * The constant currentScreen.
+     */
     public static Screen currentScreen;
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Card.loadImages();
         createJFrame();
-
-
 
         PokerTable.instance.init();
         PauseMenu.instance.init();
@@ -24,6 +37,9 @@ public class Main {
     }
 
 
+    /**
+     * Create j frame.
+     */
     public static void createJFrame() {
         frame = new JFrame();
         frame.setVisible(true);
@@ -36,7 +52,6 @@ public class Main {
 
         PokerTable.instance.addMouseListener(new PokerTableMouseHandler());
 
-        /*music.music("resources/audio/poker");*/
-
+        Music.music("resources/music.wav");
     }
 }

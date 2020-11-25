@@ -4,14 +4,36 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * The type Card.
+ */
 public class Card implements Comparable<Card> {
+
+    /**
+     * The Color.
+     */
     public CARD_COLORS color;
+    /**
+     * The Number.
+     */
     public CARD_NUMBERS number;
+    /**
+     * The Image.
+     */
     public BufferedImage image;
 
+    /**
+     * The constant cardImages.
+     */
     public static Map<String, BufferedImage> cardImages = new HashMap<>();
+    /**
+     * The constant back.
+     */
     public static String back = "BACK";
 
+    /**
+     * Load images.
+     */
     public static void loadImages() {
         try {
             for (int i = 0; i < CARD_COLORS.values().length; i++) {
@@ -25,7 +47,12 @@ public class Card implements Comparable<Card> {
         }
     }
 
-
+    /**
+     * Instantiates a new Card.
+     *
+     * @param color  color of Cards(diamonds, clubs, hearts, spades)
+     * @param number numbers of Cards(
+     */
     public Card(CARD_COLORS color, CARD_NUMBERS number) {
         this.color = color;
         this.number = number;
@@ -33,23 +60,64 @@ public class Card implements Comparable<Card> {
         image = cardImages.get(getName());
     }
 
+    /**
+     * Gets name.
+     *
+     * @return name
+     */
     public String getName() {
         return number.filename + color.filename;
     }
 
+    /**
+     * The enum Hand rank.
+     */
     public enum HandRank {
 
+        /**
+         * Royal flush hand rank.
+         */
         ROYAL_FLUSH(10),
+        /**
+         * Straight flush hand rank.
+         */
         STRAIGHT_FLUSH(9),
+        /**
+         * Four of a kind hand rank.
+         */
         FOUR_OF_A_KIND(8),
+        /**
+         * Full house hand rank.
+         */
         FULL_HOUSE(7),
+        /**
+         * Flush hand rank.
+         */
         FLUSH(6),
+        /**
+         * Straight hand rank.
+         */
         STRAIGHT(5),
+        /**
+         * Three of a kind hand rank.
+         */
         THREE_OF_A_KIND(4),
+        /**
+         * Two pair hand rank.
+         */
         TWO_PAIR(3),
+        /**
+         * Pair hand rank.
+         */
         PAIR(2),
+        /**
+         * High card hand rank.
+         */
         HIGH_CARD(1);
 
+        /**
+         * The Value.
+         */
         public int value;
 
         HandRank(int value) {
@@ -57,7 +125,12 @@ public class Card implements Comparable<Card> {
         }
     }
 
-
+    /**
+     * Determine hand rank hand rank.
+     *
+     * @param cardsArg the cards arg
+     * @return hand rank
+     */
     public static HandRank determineHandRank(Card[] cardsArg) {
         if (royalFlush(cardsArg)) {
             return HandRank.ROYAL_FLUSH;
@@ -82,7 +155,12 @@ public class Card implements Comparable<Card> {
         }
     }
 
-
+    /**
+     * Royal flush boolean.
+     *
+     * @param cardsArg the cards arg
+     * @return boolean
+     */
     public static boolean royalFlush(Card[] cardsArg) {
         Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
 
@@ -98,6 +176,12 @@ public class Card implements Comparable<Card> {
         return false;
     }
 
+    /**
+     * Straight flush boolean.
+     *
+     * @param cardsArg the cards arg
+     * @return boolean
+     */
     public static boolean straightFlush(Card[] cardsArg) {
         Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
 
@@ -124,7 +208,12 @@ public class Card implements Comparable<Card> {
         return false;
     }
 
-
+    /**
+     * Four of a kind boolean.
+     *
+     * @param cardsArg the cards arg
+     * @return boolean
+     */
     public static boolean fourOfAKind(Card[] cardsArg) {
         Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
 
@@ -138,6 +227,12 @@ public class Card implements Comparable<Card> {
         return false;
     }
 
+    /**
+     * Full house boolean.
+     *
+     * @param cardsArg the cards arg
+     * @return the boolean
+     */
     public static boolean fullHouse(Card[] cardsArg) {
         Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
 
@@ -154,6 +249,12 @@ public class Card implements Comparable<Card> {
         return three && two;
     }
 
+    /**
+     * Flush boolean.
+     *
+     * @param cardsArg the cards arg
+     * @return the boolean
+     */
     public static boolean flush(Card[] cardsArg) {
         Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
 
@@ -164,6 +265,12 @@ public class Card implements Comparable<Card> {
         return false;
     }
 
+    /**
+     * Straight boolean.
+     *
+     * @param cardsArg the cards arg
+     * @return the boolean
+     */
     public static boolean straight(Card[] cardsArg) {
         Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
 
@@ -172,7 +279,7 @@ public class Card implements Comparable<Card> {
         subarray:
         for (int i = 0; i < (cards.length - 4); i++) {
             int current = cards[i].number.index;
-            for (int j = i + 1; j <= i + 5; j++) {
+            for (int j = i + 1; j <= i + 4; j++) {
                 Card c = cards[j];
 
                 if (c.number.index != current + 1) {
@@ -182,10 +289,15 @@ public class Card implements Comparable<Card> {
             }
             return true;
         }
-
         return false;
     }
 
+    /**
+     * Three of a kind boolean.
+     *
+     * @param cardsArg the cards arg
+     * @return the boolean
+     */
     public static boolean threeOfAKind(Card[] cardsArg) {
         Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
 
@@ -200,6 +312,12 @@ public class Card implements Comparable<Card> {
         return three;
     }
 
+    /**
+     * Two pair boolean.
+     *
+     * @param cardsArg the cards arg
+     * @return the boolean
+     */
     public static boolean twoPair(Card[] cardsArg) {
 
         Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
@@ -215,6 +333,12 @@ public class Card implements Comparable<Card> {
         return pairs == 2;
     }
 
+    /**
+     * Pair boolean.
+     *
+     * @param cardsArg the cards arg
+     * @return the boolean
+     */
     public static boolean pair(Card[] cardsArg) {
         Card[] cards = Arrays.copyOf(cardsArg, cardsArg.length);
 
@@ -245,12 +369,30 @@ public class Card implements Comparable<Card> {
         return color.toString() + "_" + number.toString();
     }
 
+    /**
+     * The enum Card colors.
+     */
     public enum CARD_COLORS {
+        /**
+         * Clubs card colors.
+         */
         CLUBS("C"),
+        /**
+         * Hearts card colors.
+         */
         HEARTS("H"),
+        /**
+         * Spades card colors.
+         */
         SPADES("S"),
+        /**
+         * Diamonds card colors.
+         */
         DIAMONDS("D");
 
+        /**
+         * The Filename.
+         */
         public String filename;
 
         CARD_COLORS(String filename) {
@@ -258,22 +400,70 @@ public class Card implements Comparable<Card> {
         }
     }
 
+    /**
+     * The enum Card numbers.
+     */
     public enum CARD_NUMBERS {
+        /**
+         * Two card numbers.
+         */
         TWO("2", 0),
+        /**
+         * Three card numbers.
+         */
         THREE("3", 1),
+        /**
+         * Four card numbers.
+         */
         FOUR("4", 2),
+        /**
+         * Five card numbers.
+         */
         FIVE("5", 3),
+        /**
+         * Six card numbers.
+         */
         SIX("6", 4),
+        /**
+         * Seven card numbers.
+         */
         SEVEN("7", 5),
+        /**
+         * Eight card numbers.
+         */
         EIGHT("8", 6),
+        /**
+         * Nine card numbers.
+         */
         NINE("9", 7),
+        /**
+         * Ten card numbers.
+         */
         TEN("10", 8),
+        /**
+         * Jack card numbers.
+         */
         JACK("J", 9),
+        /**
+         * Queen card numbers.
+         */
         QUEEN("Q", 10),
+        /**
+         * King card numbers.
+         */
         KING("K", 11),
+        /**
+         * Ace card numbers.
+         */
         ACE("A", 12);
 
+        /**
+         * The Filename.
+         */
         public String filename;
+        /**
+         * The Index.
+         */
         public int index;
 
         CARD_NUMBERS(String filename, int index) {
@@ -281,6 +471,12 @@ public class Card implements Comparable<Card> {
             this.index = index;
         }
 
+        /**
+         * Gets index.
+         *
+         * @param numbers the numbers
+         * @return index
+         */
         public static int getIndex(CARD_NUMBERS numbers) {
             for (int i = 0; i < values().length; i++) {
                 if (values()[i] == numbers) return i;
