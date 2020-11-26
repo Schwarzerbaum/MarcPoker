@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 
 /**
- * The type Bot.
+ * The type Bot
+ * Bot is the opponent of player
  */
 public class Bot extends Player {
 

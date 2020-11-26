@@ -11,7 +11,8 @@ public class Player {
 	 */
 	ArrayList<PokerCard> cards = new ArrayList<>();
 	/**
-	 * The Money pool.
+	 * The Money pool
+	 * beted money  for the round .
 	 */
 	public int moneyPool;
 	/**

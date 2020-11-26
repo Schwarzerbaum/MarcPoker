@@ -391,7 +391,7 @@ public class Card implements Comparable<Card> {
         DIAMONDS("D");
 
         /**
-         * The Filename.
+         * The Filename is a shortcut for the actual name
          */
         public String filename;
 
@@ -458,7 +458,8 @@ public class Card implements Comparable<Card> {
         ACE("A", 12);
 
         /**
-         * The Filename.
+         * The Filename is a shortcut for the actual name
+         *
          */
         public String filename;
         /**

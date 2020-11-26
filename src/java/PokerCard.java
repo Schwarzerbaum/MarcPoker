@@ -10,7 +10,8 @@ public class PokerCard {
 	private double angle;
 
 	/**
-	 * The Visible.
+	 * The Visible
+	 * is not visible
 	 */
 	public boolean visible = false;
 

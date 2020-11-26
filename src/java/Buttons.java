@@ -17,13 +17,13 @@ import java.net.URL;
 import java.util.Arrays;
 
 /**
- * The type Buttons.
+ * The type Buttons
  */
 public class Buttons {
     /**
-     * The Bet button.
+     * The Button
      */
-    static JButton betButton;
+    static JButton Button;
     /**
      * The Label.
      */

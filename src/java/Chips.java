@@ -13,56 +13,57 @@ import java.net.URL;
 import java.util.Arrays;
 
 /**
- * The enum Chips.
+ * The enum Chips
  */
 public enum Chips {
     /**
-     * One chips.
+     * One dollor chips with value 1
      */
     ONE(1),
     /**
-     * Five chips.
+     * Five dollor chips with value 5
      */
     FIVE(5),
     /**
-     * Ten chips.
+     * Ten dollor chips with value 10
      */
     TEN(10),
     /**
-     * Twenty chips.
+     * Twenty dollor chips with value 20
      */
     TWENTY(20),
     /**
-     * Fifty chips.
+     * Fifty dollor chips with value 50
      */
     FIFTY(50),
     /**
-     * Hundred chips.
+     * Hundred dollor chips with value 100
      */
     HUNDRED(100),
     /**
-     * Two hundred chips.
+     * Two hundred dollor chips with value 200
      */
     TWO_HUNDRED(200),
     /**
-     * Five hundred chips.
+     * Five hundred dollor chips with value 500
      */
     FIVE_HUNDRED(500),
     /**
-     * Thousand chips.
+     * Thousanddollor chips with value 1000
      */
     THOUSAND(1000);
 
     /**
-     * The Value.
+     * The Value of Chips
+     * give chips a value
      */
     public int value;
     /**
-     * The Image.
+     * The Image of the Chips
      */
     public BufferedImage image;
     /**
-     * The Button.
+     * The Button of the Chips
      */
     public JButton button;
 

@@ -5,19 +5,31 @@ import java.util.ArrayList;
 
 
 /**
+ *
+ * Version 1.5
+ * @Author Marc
  * The type Main.
  */
 public class Main {
     /**
+     *
+     * Version 1.5
+     * @Author Marc
      * The constant frame.
      */
     public static JFrame frame;
     /**
+     *
+     * Version 1.5
+     * @Author Marc
      * The constant currentScreen.
      */
     public static Screen currentScreen;
 
     /**
+     *
+     * Version 1.5
+     * @Author Marc
      * The entry point of application.
      *
      * @param args the input arguments
@@ -38,6 +50,9 @@ public class Main {
 
 
     /**
+     *
+     * Version 1.5
+     * @Author Marc
      * Create j frame.
      */
     public static void createJFrame() {

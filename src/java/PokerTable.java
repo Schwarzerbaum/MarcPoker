@@ -76,12 +76,14 @@ public class PokerTable extends Screen {
      */
     ArrayList<PokerCard> cards = new ArrayList<>();
 
+
     @Override
     public void init() {
         super.init();
-        System.out.println("lol");
+        /*System.out.println("lol");*/
 
         Buttons buttons = new Buttons();
+
 
         cardWidth = getWidth() / 15d;
         cardHeight = cardWidth * 1.5d;
